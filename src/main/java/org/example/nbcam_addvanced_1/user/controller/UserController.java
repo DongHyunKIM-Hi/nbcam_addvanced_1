@@ -20,9 +20,9 @@ public class UserController {
     private final JwtUtil jwtUtil;
 
     @GetMapping("/get")
-    public String getUserInfo() {
-        log.info("호출");
-        return "호출 되었습니다.";
+    public String getUserInfo(HttpServletRequest request) {
+        log.info("호출 : " + request.getAttribute("username"));
+        return request.getAttribute("username") + "이 호출 되었습니다..";
     }
 
     // 토큰 생성 테스트
