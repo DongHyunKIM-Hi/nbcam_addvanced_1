@@ -36,9 +36,9 @@ public class UserController {
 
     // 토큰 검증 테스트
     @GetMapping("/validate")
-    public ResponseEntity<Boolean> checkValidate(HttpServletRequest httpRequest) {
+    public ResponseEntity<Boolean> checkValidate(HttpServletRequest request) {
 
-        String authorizationHeader = httpRequest.getHeader("Authorization");
+        String authorizationHeader = request.getHeader("Authorization");
 
         String jwt = authorizationHeader.substring(7);
 
@@ -49,9 +49,9 @@ public class UserController {
 
     // 토큰 복호화 테스트
     @GetMapping("/username")
-    public ResponseEntity<String> getUsername(HttpServletRequest httpRequest) {
+    public ResponseEntity<String> getUsername(HttpServletRequest request) {
 
-        String authorizationHeader = httpRequest.getHeader("Authorization");
+        String authorizationHeader = request.getHeader("Authorization");
 
         String jwt = authorizationHeader.substring(7);
 
