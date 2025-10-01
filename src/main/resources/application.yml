@@ -14,3 +14,6 @@ spring:
     defer-datasource-initialization: true
 
 
+jwt:
+  secret:
+    key: IfthisgetsstolenitsabigproblemIfthelengthistooshortthesecurityisnotsufficientsoanerroroccurs
