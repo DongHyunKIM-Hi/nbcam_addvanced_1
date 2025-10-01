@@ -12,6 +12,7 @@ import jakarta.annotation.PostConstruct;
 import java.util.Date;
 import javax.crypto.SecretKey;
 import lombok.extern.slf4j.Slf4j;
+import org.example.nbcam_addvanced_1.common.enums.UserRoleEnum;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -44,10 +45,11 @@ public class JwtUtil {
 
 
     // 토큰 생성
-    public String generateToken(String username) {
+    public String generateToken(String username, UserRoleEnum userRole) {
         Date now = new Date();
         return BEARER_PREFIX + Jwts.builder()
             .claim("username", username)
+            .claim("auth", userRole)
             .issuedAt(now)
             .expiration(new Date(now.getTime() + TOKEN_TIME))
             .signWith(key, Jwts.SIG.HS256)
@@ -76,6 +78,10 @@ public class JwtUtil {
 
     public String extractUsername(String token) {
         return extractAllClaims(token).get("username", String.class);
+    }
+
+    public String extractRole(String token) {
+        return extractAllClaims(token).get("auth", String.class);
     }
 
 

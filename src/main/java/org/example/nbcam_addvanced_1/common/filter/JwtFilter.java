@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.nbcam_addvanced_1.common.enums.UserRoleEnum;
 import org.example.nbcam_addvanced_1.common.utils.JwtUtil;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,7 +32,7 @@ public class JwtFilter extends OncePerRequestFilter {
         // JWT 검증이 필요 없는 경우 조 ex) 로그인
         String requestURI = request.getRequestURI();
 
-        if(requestURI.equals("/api/user/login")) {
+        if(requestURI.equals("/api/login")) {
             filterChain.doFilter(request,response);
             return;
         }
@@ -61,9 +62,13 @@ public class JwtFilter extends OncePerRequestFilter {
 
         String username = jwtUtil.extractUsername(jwt);
 
-        request.setAttribute("username", username);
+        String auth = jwtUtil.extractRole(jwt);
 
-        User user = new User(username,"", List.of());
+        UserRoleEnum userRole = UserRoleEnum.valueOf(auth);
+
+
+        User user = new User(username,"", List.of(userRole::getRole));
+
 
         SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities()));
 
