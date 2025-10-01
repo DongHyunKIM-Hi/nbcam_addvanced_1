@@ -44,4 +44,8 @@ public class User {
         this.role = role;
     }
 
+    public void updateEmail(String email) {
+        this.email = email;
+    }
+
 }

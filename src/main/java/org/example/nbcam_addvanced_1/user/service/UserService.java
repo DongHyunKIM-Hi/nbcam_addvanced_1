@@ -1,5 +1,6 @@
 package org.example.nbcam_addvanced_1.user.service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.nbcam_addvanced_1.common.entity.User;
@@ -21,10 +22,10 @@ public class UserService {
 
     public String login(LoginRequestDto request) {
 
-        String userName = request.getUserName();
+        String username = request.getUsername();
         String password = request.getPassword();
 
-        User user = userRepository.findByUsername(userName).orElseThrow(
+        User user = userRepository.findByUsername(username).orElseThrow(
             () -> new IllegalArgumentException("등록된 사용자가 없습니다.")
         );
 
@@ -38,5 +39,16 @@ public class UserService {
     // InitDat 저장용 으로 만든 메서드임
     public User save(User user) {
         return userRepository.save(user);
+    }
+
+    @Transactional
+    public void updateEmail(String username, String email) {
+
+        User user = userRepository.findByUsername(username).orElseThrow(
+            () -> new IllegalArgumentException("등록된 사용자가 없습니다.")
+        );
+
+        user.updateEmail(email);
+
     }
 }
