@@ -23,8 +23,8 @@ public class InitData {
     public void init() {
         List<User> productList =
             List.of(
-                new User("아이브",passwordEncoder.encode("1234"),"user1@sparta.com", UserRoleEnum.NORMAL),
-                new User("BTS",passwordEncoder.encode("1234"),"user2@sparta.com",UserRoleEnum.ADMIN)
+                new User("아이브",passwordEncoder.encode("1234"),"user1@sparta.com", 24, UserRoleEnum.NORMAL),
+                new User("BTS",passwordEncoder.encode("1234"),"user2@sparta.com", 30, UserRoleEnum.ADMIN)
             );
         for (User product : productList) {
             userService.save(product);

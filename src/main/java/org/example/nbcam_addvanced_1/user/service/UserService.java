@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.nbcam_addvanced_1.common.entity.User;
 import org.example.nbcam_addvanced_1.common.utils.JwtUtil;
+import org.example.nbcam_addvanced_1.user.model.dto.UserDto;
 import org.example.nbcam_addvanced_1.user.model.request.LoginRequestDto;
 import org.example.nbcam_addvanced_1.user.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -50,5 +51,33 @@ public class UserService {
 
         user.updateEmail(email);
 
+    }
+
+    @Transactional
+    public UserDto getUserInfoByUsername(String username) {
+        User user = userRepository.findByUsername(username).orElseThrow(
+            () -> new IllegalArgumentException("등록된 사용자가 없습니다.")
+        );
+
+        return UserDto.from(user);
+    }
+
+    @Transactional
+    public UserDto updateUserAge(String username, int age) {
+
+        User user = userRepository.findByUsername(username).orElseThrow(
+            () -> new IllegalArgumentException("등록된 사용자가 없습니다.")
+        );
+
+        userRepository.updateAge(username, age);
+        user.updateAge(age);
+
+        return UserDto.from(user);
+
+    }
+
+    @Transactional
+    public void deleteUser(String username) {
+        userRepository.deleteByUsername(username);
     }
 }

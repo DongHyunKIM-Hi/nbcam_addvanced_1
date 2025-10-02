@@ -34,18 +34,26 @@ public class User {
     private String email;
 
     @Column(nullable = false)
+    private int age;
+
+    @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private UserRoleEnum role;
 
-    public User(String username, String password, String email, UserRoleEnum role) {
+    public User(String username, String password, String email, int age,UserRoleEnum role) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.age = age;
         this.role = role;
     }
 
     public void updateEmail(String email) {
         this.email = email;
+    }
+
+    public void updateAge(int age) {
+        this.age = age;
     }
 
 }
