@@ -18,12 +18,12 @@ public class NbacmFilter2 extends OncePerRequestFilter {
         throws ServletException, IOException {
 
         // 요청이 들어갈 때 실행되는 부분
-        System.out.println("✅ NbcamFilter2로 들어간다 ");
+        //System.out.println("✅ NbcamFilter2로 들어간다 ");
 
         // 필터 계속 진행
         filterChain.doFilter(request, response);
 
         // 요청이 나갈 때 실행되는 부분
-        System.out.println("✅ NbcamFilter2로 나간다 ");
+        //System.out.println("✅ NbcamFilter2로 나간다 ");
     }
 }
