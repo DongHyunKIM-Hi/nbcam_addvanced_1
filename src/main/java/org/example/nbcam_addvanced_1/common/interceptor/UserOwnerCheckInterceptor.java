@@ -7,7 +7,7 @@ import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.nbcam_addvanced_1.user.service.UserService;
+import org.example.nbcam_addvanced_1.domain.user.service.UserService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;

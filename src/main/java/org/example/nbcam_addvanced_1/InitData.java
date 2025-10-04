@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 
 import org.example.nbcam_addvanced_1.common.entity.User;
 import org.example.nbcam_addvanced_1.common.enums.UserRoleEnum;
-import org.example.nbcam_addvanced_1.user.service.UserService;
+import org.example.nbcam_addvanced_1.domain.user.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
