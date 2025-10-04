@@ -57,18 +57,12 @@ public class PostService {
 
     public List<PostSummaryDto> getPostSummaryListByUsername(String username) {
 
-        User user = userRepository.findByUsername(username).orElseThrow(
-            () -> new IllegalArgumentException("등록된 사용자가 없습니다.")
-        );
+        List<Post> posts = postRepository.findAllWithCommentsByUsername(username);
 
-        List<PostSummaryDto> result = new ArrayList<>();
 
-        for(Post post : user.getPosts()) {
-            int commentCount = post.getComments().size();
-            result.add(new PostSummaryDto(post.getContent(), commentCount));
-        }
-
-        return result;
+        return posts.stream()
+            .map(post -> new PostSummaryDto(post.getContent(), post.getComments().size()))
+            .toList();
 
     }
 
