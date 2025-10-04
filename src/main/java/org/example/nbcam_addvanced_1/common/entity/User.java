@@ -16,6 +16,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.example.nbcam_addvanced_1.common.enums.UserRoleEnum;
+import org.hibernate.annotations.BatchSize;
 
 
 @Entity
