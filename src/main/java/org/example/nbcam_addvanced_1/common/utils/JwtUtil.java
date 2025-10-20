@@ -11,6 +11,7 @@ import jakarta.annotation.PostConstruct;
 
 import java.util.Date;
 import javax.crypto.SecretKey;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.example.nbcam_addvanced_1.common.enums.UserRoleEnum;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Component;
 
 @Slf4j(topic = "JwtUtil")
 @Component
+@Getter
 public class JwtUtil {
 
     public static final String BEARER_PREFIX = "Bearer ";
