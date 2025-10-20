@@ -14,6 +14,9 @@ public class Calculator {
     public int divide(int a, int b) {
         return a / b;
     }
+    public boolean isEqual(int a, int b) {
+        return a == b;
+    }
 
 }
 
